@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
+
 import Card from "../UI/Card";
 import "./Expenses.css";
 
@@ -17,8 +18,6 @@ function Expenses(data) {
       expense.date.toLocaleString("en-US", { year: "numeric" }) === year
   );
 
-  console.log(data);
-
   return (
     <div>
       <Card className="expenses">
@@ -26,14 +25,7 @@ function Expenses(data) {
           selected={year}
           onFilterExpenseChange={saveFilterDatehandler}
         />
-        {expenseYears.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        <ExpensesList items={expenseYears} />
       </Card>
     </div>
   );
