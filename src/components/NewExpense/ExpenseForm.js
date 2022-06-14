@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
+  const [displayButton, setDisplayButton] = useState(true);
 
   // const [userInput, setUserInput] = useState({
   //   enteredTitle: "",
@@ -54,7 +55,16 @@ const ExpenseForm = (props) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+    setDisplayButton(!displayButton);
   };
+
+  const toggleButton = () => {
+    setDisplayButton(!displayButton);
+  };
+
+  if (displayButton) {
+    return <button onClick={toggleButton}>Add Expense</button>;
+  }
 
   return (
     <form onSubmit={submitHandler}>
@@ -81,7 +91,7 @@ const ExpenseForm = (props) => {
           <label>Date</label>
           <input
             type="date"
-            min="2022-01-01"
+            min="2019-01-01"
             max="2023-12-31"
             value={enteredDate}
             onChange={dateChangeHandler}
@@ -89,6 +99,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={toggleButton}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
