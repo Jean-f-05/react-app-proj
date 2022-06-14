@@ -11,7 +11,6 @@ function Expenses(data) {
 
   const saveFilterDatehandler = (filterYear) => {
     setYear(filterYear);
-    console.log(year);
   };
 
   const expenseYears = data.items.filter(
